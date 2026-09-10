@@ -1,0 +1,195 @@
+{
+  "packages": [
+    {
+      "files": [
+        "block-buffer-0.10.4/LICENSE-APACHE",
+        "block-buffer-0.10.4/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "block-buffer",
+      "version": "0.10.4"
+    },
+    {
+      "files": [
+        "cfg-if-1.0.4/LICENSE-APACHE",
+        "cfg-if-1.0.4/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "cfg-if",
+      "version": "1.0.4"
+    },
+    {
+      "files": [
+        "cpufeatures-0.2.17/LICENSE-APACHE",
+        "cpufeatures-0.2.17/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "cpufeatures",
+      "version": "0.2.17"
+    },
+    {
+      "files": [
+        "crypto-common-0.1.7/LICENSE-APACHE",
+        "crypto-common-0.1.7/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "crypto-common",
+      "version": "0.1.7"
+    },
+    {
+      "files": [
+        "digest-0.10.7/LICENSE-APACHE",
+        "digest-0.10.7/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "digest",
+      "version": "0.10.7"
+    },
+    {
+      "files": [
+        "generic-array-0.14.7/LICENSE"
+      ],
+      "license_expression": "MIT",
+      "name": "generic-array",
+      "version": "0.14.7"
+    },
+    {
+      "files": [
+        "itoa-1.0.18/LICENSE-APACHE",
+        "itoa-1.0.18/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "itoa",
+      "version": "1.0.18"
+    },
+    {
+      "files": [
+        "libc-0.2.189/LICENSE-APACHE",
+        "libc-0.2.189/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "libc",
+      "version": "0.2.189"
+    },
+    {
+      "files": [
+        "memchr-2.8.3/COPYING",
+        "memchr-2.8.3/LICENSE-MIT",
+        "memchr-2.8.3/UNLICENSE"
+      ],
+      "license_expression": "Unlicense OR MIT",
+      "name": "memchr",
+      "version": "2.8.3"
+    },
+    {
+      "files": [
+        "proc-macro2-1.0.107/LICENSE-APACHE",
+        "proc-macro2-1.0.107/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "proc-macro2",
+      "version": "1.0.107"
+    },
+    {
+      "files": [
+        "quote-1.0.47/LICENSE-APACHE",
+        "quote-1.0.47/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "quote",
+      "version": "1.0.47"
+    },
+    {
+      "files": [
+        "serde-1.0.229/LICENSE-APACHE",
+        "serde-1.0.229/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "serde",
+      "version": "1.0.229"
+    },
+    {
+      "files": [
+        "serde_core-1.0.229/LICENSE-APACHE",
+        "serde_core-1.0.229/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "serde_core",
+      "version": "1.0.229"
+    },
+    {
+      "files": [
+        "serde_derive-1.0.229/LICENSE-APACHE",
+        "serde_derive-1.0.229/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "serde_derive",
+      "version": "1.0.229"
+    },
+    {
+      "files": [
+        "serde_json-1.0.151/LICENSE-APACHE",
+        "serde_json-1.0.151/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "serde_json",
+      "version": "1.0.151"
+    },
+    {
+      "files": [
+        "sha2-0.10.9/LICENSE-APACHE",
+        "sha2-0.10.9/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "sha2",
+      "version": "0.10.9"
+    },
+    {
+      "files": [
+        "syn-3.0.3/LICENSE-APACHE",
+        "syn-3.0.3/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "syn",
+      "version": "3.0.3"
+    },
+    {
+      "files": [
+        "typenum-1.20.1/LICENSE",
+        "typenum-1.20.1/LICENSE-APACHE",
+        "typenum-1.20.1/LICENSE-MIT"
+      ],
+      "license_expression": "MIT OR Apache-2.0",
+      "name": "typenum",
+      "version": "1.20.1"
+    },
+    {
+      "files": [
+        "unicode-ident-1.0.24/LICENSE-APACHE",
+        "unicode-ident-1.0.24/LICENSE-MIT",
+        "unicode-ident-1.0.24/LICENSE-UNICODE"
+      ],
+      "license_expression": "(MIT OR Apache-2.0) AND Unicode-3.0",
+      "name": "unicode-ident",
+      "version": "1.0.24"
+    },
+    {
+      "files": [
+        "version_check-0.9.5/LICENSE-APACHE",
+        "version_check-0.9.5/LICENSE-MIT"
+      ],
+      "license_expression": "MIT/Apache-2.0",
+      "name": "version_check",
+      "version": "0.9.5"
+    },
+    {
+      "files": [
+        "zmij-1.0.23/LICENSE-MIT"
+      ],
+      "license_expression": "MIT",
+      "name": "zmij",
+      "version": "1.0.23"
+    }
+  ],
+  "schema": "jc/rust-third-party-licenses/1"
+}

@@ -1,0 +1,9 @@
+[package]
+name = "judgment_kernel"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+serde = "1.0.229"
+serde_json = "1.0.151"
+sha2 = "0.10.9"

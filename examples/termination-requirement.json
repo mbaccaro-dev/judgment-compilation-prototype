@@ -1,0 +1,28 @@
+{
+  "schema": "jc/requirement-request/1",
+  "operation": "instantiate",
+  "statement_id": "ps-4_smt.a",
+  "source_sha256": "a9e23b09116d5e651461d61777c2e7dc1f3454ab3f9e1e8fdf8af01c37dc01be",
+  "template_sha256": "aabea98d1dd7487ff69a65b9683663ede0ff542500eef6cbdc247b520923bf9c",
+  "scope": {
+    "organization_id": "example-organization",
+    "system_id": "example-system"
+  },
+  "parameters": [
+    {
+      "parameter_id": "ps-04_odp.01",
+      "control_id": "ps-4",
+      "source_sha256": "a9e23b09116d5e651461d61777c2e7dc1f3454ab3f9e1e8fdf8af01c37dc01be",
+      "scope": {
+        "organization_id": "example-organization",
+        "system_id": "example-system"
+      },
+      "values": [
+        "4 hours"
+      ],
+      "evidence_refs": [
+        "example-only:fictional-termination-policy"
+      ]
+    }
+  ]
+}

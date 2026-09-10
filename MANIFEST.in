@@ -1,0 +1,13 @@
+include README.md LICENSE.md THIRD_PARTY_NOTICES.md pyproject.toml setup.py
+include examples/termination.json examples/termination-requirement.json
+prune .local
+prune .pytest_cache
+prune evidence
+prune tests
+prune tools
+recursive-exclude * __pycache__ *.pyc *.tmp
+
+include rust/judgment_kernel/Cargo.toml rust/judgment_kernel/Cargo.lock
+include rust/judgment_kernel/src/lib.rs rust/judgment_kernel/src/main.rs
+
+recursive-include THIRD_PARTY_LICENSES *

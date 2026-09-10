@@ -1,0 +1,38 @@
+{
+  "request_id": "cold-user-request-001",
+  "scenario_id": "business-a-business-b-employee-a",
+  "entities": [
+    {
+      "id": "org-a",
+      "alias": "Business A",
+      "kind": "organization"
+    },
+    {
+      "id": "org-b",
+      "alias": "Business B",
+      "kind": "organization"
+    },
+    {
+      "id": "person-a",
+      "alias": "Employee A",
+      "kind": "person"
+    },
+    {
+      "id": "account-a",
+      "alias": "Employee A's administrator account",
+      "kind": "account"
+    }
+  ],
+  "statements": [
+    "Employee A employment at Business A has ended.",
+    "Employee A's administrator account is an account of Employee A.",
+    "Employee A's administrator account has administrator privileges.",
+    "Employee A retains access through Employee A's administrator account."
+  ],
+  "unknowns": [
+    "Account ownership is unknown.",
+    "Contractual revocation responsibility between Business A and Business B is unknown.",
+    "The organization-defined termination procedure and time period are unknown."
+  ],
+  "question": "Assess continued administrator access after employment termination."
+}

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Judgment Compilation</title>
+<style>
+body { max-width: 760px; margin: 16px; font: 16px "Times New Roman", serif; color: #000; background: #fff; }
+h1 { margin-bottom: 4px; }
+fieldset { margin: 16px 0; }
+input, button, textarea { font: inherit; }
+input { width: min(90%, 640px); }
+button { margin: 3px 2px; }
+textarea, pre { width: 100%; box-sizing: border-box; border: 1px solid #000; padding: 8px; background: #fff; }
+textarea { min-height: 110px; }
+pre { min-height: 160px; white-space: pre-wrap; overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+<h1>Judgment Compilation</h1>
+<p>Browse the included NIST documents and run source-linked checks.</p>
+
+<form id="ask">
+<label for="question">Question</label><br>
+<input id="question" name="question" placeholder="What does NIST say about administrator access?">
+<button id="explore" type="submit">Ask</button>
+</form>
+
+<fieldset>
+<legend>Browse</legend>
+<button id="status" type="button">Status</button>
+<button id="reviewedPrograms" type="button">Reviewed checks</button>
+<button id="documentCoverage" type="button">Review status</button>
+<button id="semanticProgram" type="button">Example check</button>
+<button id="semanticProgress" type="button">Library scan</button>
+<button id="sourceAccounting" type="button">Source files</button>
+<button id="sourceMappings" type="button">Source links</button>
+<button id="auditRequirementDispositions" type="button">Requirement index</button>
+</fieldset>
+<p>Review status may take a moment.</p>
+
+<fieldset>
+<legend>How fast was access disabled?</legend>
+<p>Loads the included PS-4(a) example and compares the supplied times.</p>
+<textarea id="ps4aTimingInput" readonly>Press “Load and run.”</textarea><br>
+<button id="ps4aTiming" type="button">Load and run</button>
+<pre id="ps4aTimingTrace">No timing result yet.</pre>
+</fieldset>
+
+<h2>Result</h2>
+<pre id="result">Ready.</pre>
+
+<script>
+const result=document.getElementById("result");
+const show=value=>JSON.stringify(value,null,2);
+async function request(path,options){
+  const response=await fetch(path,options);
+  const data=await response.json();
+  if(!response.ok) throw Error(data.error||response.statusText);
+  return data;
+}
+async function query(payload){
+  result.textContent="Working...";
+  try{
+    const data=await request("/api/query",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    result.textContent=show(data);
+    return data;
+  }catch(error){ result.textContent="Error: "+error.message; }
+}
+document.getElementById("ask").onsubmit=event=>{event.preventDefault();query({mode:"inquiry",question:document.getElementById("question").value})};
+document.getElementById("status").onclick=async()=>{try{result.textContent=show(await request("/api/status"))}catch(error){result.textContent="Error: "+error.message}};
+document.getElementById("reviewedPrograms").onclick=()=>query({mode:"reviewed_programs"});
+document.getElementById("documentCoverage").onclick=async()=>{
+  result.textContent="Reading review status...";
+  try{
+    const [status,reviewed,mappings,library]=await Promise.all([
+      request("/api/status"),
+      request("/api/query",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mode:"reviewed_programs"})}),
+      request("/api/query",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mode:"mappings",request:{operation:"index"}})}),
+      request("/api/query",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mode:"library",request:{operation:"documents",offset:0,limit:200}})})
+    ]);
+    const packages=reviewed.kernel.packages;
+    const covered=new Set(packages.map(item=>item.publication_id));
+    covered.add("NIST SP 800-53r5-upd1");
+    const open=library.kernel.documents.filter(item=>!covered.has(item.publication_id));
+    const lines=[
+      "Fully reviewed documents: 0 of "+status.retained_library.document_count,
+      "",
+      "Documents with reviewed checks",
+      "NIST SP 800-53 Rev. 5 Update 1: "+mappings.kernel.counts.exact_reviewed_source_mappings+" source links and "+status.coverage.executable_pack_stacks.architectures+" compiled checks.",
+      "",
+      "Other documents with reviewed checks ("+packages.length+")",
+      ...packages.map(item=>"- "+item.publication_id+": "+item.title),
+      "",
+      "Documents without reviewed checks ("+open.length+")",
+      ...open.map(item=>"- "+item.publication_id+": "+item.title)
+    ];
+    result.textContent=lines.join("\n");
+  }catch(error){result.textContent="Error: "+error.message}
+};
+document.getElementById("semanticProgram").onclick=()=>query({mode:"semantic_program",request:{architecture_id:"termination-assessment"}});
+document.getElementById("semanticProgress").onclick=async()=>{const data=await query({mode:"semantic_progress"});if(data)result.textContent=data.answer};
+document.getElementById("sourceAccounting").onclick=()=>query({mode:"accounting",request:{operation:"manifest"}});
+document.getElementById("sourceMappings").onclick=()=>query({mode:"mappings",request:{operation:"index"}});
+document.getElementById("auditRequirementDispositions").onclick=()=>query({mode:"requirements",request:{schema:"jc/requirement-request/1",operation:"dispositions"}});
+document.getElementById("ps4aTiming").onclick=async()=>{
+  try{
+    const example=await request("/api/ps4a-timing-example");
+    document.getElementById("ps4aTimingInput").value=show(example);
+    const data=await request("/api/query",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mode:"ps4a_timing",request:example})});
+    document.getElementById("ps4aTimingTrace").textContent=show(data);
+    result.textContent=show(data);
+  }catch(error){
+    const message="Error: "+error.message;
+    document.getElementById("ps4aTimingTrace").textContent=message;
+    result.textContent=message;
+  }
+};
+</script>
+</body>
+</html>

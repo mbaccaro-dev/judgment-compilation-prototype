@@ -1,0 +1,119 @@
+{
+  "$id": "https://csrc.nist.gov/csrc/media/projects/cprt/documents/schema/cprt_schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "A representation of a set of cybersecurity elements from the NIST Cybersecurity and Privacy Reference Tool (CPRT).",
+  "type": "object",
+  "required":["documents","elements","relationship_types","relationships"],
+  "properties": {
+    "documents": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/document" }
+    },
+    "elements":{
+        "type":"array",
+        "items": { "$ref": "#/$defs/element"}
+    },
+    "relationship_types":{
+        "type":"array",
+        "items": { "$ref": "#/$defs/relationship_type"}
+    },
+    "relationships":{
+        "type":"array",
+        "items": { "$ref": "#/$defs/relationship"}
+    }
+  },
+  "$defs": {
+    "document":{
+        "type":"object",
+        "required":["doc_identifier","name","version","website"],
+        "properties":{
+            "doc_identifier":{
+                "type":"string",
+                "description":"the short name of the document. This property will be used later."
+            },
+            "name":{
+                "type":"string",
+                "description":"the name of the document"
+            },
+            "version":{
+                "type":"string",
+                "description":"the string representation of the version of the document"
+            },
+            "website":{
+                "type":"string",
+                "description":"The URL of the document on the internet"
+            }
+        }
+    },
+    "element":{
+        "type":"object",
+        "required":["doc_identifier","element_type","element_identifier","title","text"],
+        "properties":{
+            "doc_identifier":{
+                "type":"string",
+                "description":"the short name of the related document"
+            },
+            "element_type":{
+                "type":"string",
+                "description":"The type of element as given by the related document."
+            },
+            "element_identifier":{
+                "type":"string",
+                "description":"the name of the element. This property might be the identifier that is given to the element by the given document like 'ID.AM-1' or 'S0009'. Default value is the string 'N/A'."
+            },
+            "title":{
+                "type":"string",
+                "description":"The title of the element. Some elements may not have titles e.g. ID.AM-1 or S0009. Default value is the string 'N/A'."
+            },
+            "text":{
+                "type":"string",
+                "description":"This field represents the text within an element."
+            }
+        }
+    },
+    "relationship_type":{
+        "type":"object",
+        "required":["relationship_identifier","description"],
+        "properties":{
+            "relationship_identifier":{
+                "type":"string",
+                "description":"The name of the relationship type."
+            },
+            "description":{
+                "type":"string",
+                "description":"The description of the relationship type."
+            }
+        }
+    },
+    "relationship":{
+        "type":"object",
+        "required":["source_element_identifier","source_doc_identifier","dest_element_identifier","dest_doc_identifier","provenance_doc_identifier","relationship_identifier"],
+        "properties":{
+            "source_element_identifier":{
+                "type":"string",
+                "description":"the business key of the element name which is the source element of the relationship"
+            },
+            "source_doc_identifier":{
+                "type":"string",
+                "description":"the business key of the document short name which contains the source element"
+            },
+            "dest_element_identifier":{
+                "type":"string",
+                "description":"the business key of the element name which is the destination element of the relationship"
+            },
+            "dest_doc_identifier":{
+                "type":"string",
+                "description":"the business key of the document short name which contains the destination element"
+            },
+            "provenance_doc_identifier":{
+                "type":"string",
+                "description":"the identifier of the provenance document which defined the relationship"
+            },
+            "relationship_identifier":{
+                "type":"string",
+                "description":"the identifier of the relationship type id which is represented in the relationship"
+            }
+        }
+    }
+  }
+}
